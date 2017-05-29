@@ -1,0 +1,21 @@
+library(foreign)
+library(shiny)
+library(caret)
+
+dv <- read.dta("data/dv.dta",convert.underscore=TRUE)
+c <- c(9,10,12,13,16,18,19,20,21,23,25,26,27,29,30,31,34,37,38,40,41,43)
+dv$republican <- ifelse(is.element(dv$code,c),1,0)
+dv$republican <- as.factor(dv$republican)
+
+dv <- na.omit(dv)
+dv$forceavg <- NULL
+dv.sc <- preProcess(dv[,6:17],method = c("scale"))
+dv.c <- preProcess(dv[,6:17],method = c("center"))
+dv.st <- preProcess(dv[,6:17],method = c("center","scale"))
+dv.n <- preProcess(dv[,6:17],method = c("range"))
+dv.yj <- preProcess(dv[,6:17],method = c("YeoJohnson"))
+scaled <- predict(dv.sc,dv)
+centered <- predict(dv.c,dv)
+standardised <- predict(dv.st,dv)
+normalised <- predict(dv.n,dv)
+yeojonhson <- predict(dv.yj,dv)
