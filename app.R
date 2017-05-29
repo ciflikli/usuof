@@ -1,4 +1,4 @@
-source("global.R",local=TRUE)
+source("global.R", local = TRUE)
 ui <- fluidPage(
   titlePanel("US Power and Partnership 1816-2006"),
   sidebarLayout(
