@@ -2,7 +2,7 @@ library(foreign)
 library(shiny)
 library(caret)
 
-dv <- read.dta("data/dv.dta", convert.underscore = TRUE)
+dv <- read.dta("dv.dta", convert.underscore = TRUE)
 c <- c(9, 10, 12, 13, 16, 18, 19, 20, 21, 23, 25, 26, 27, 29, 30, 31, 34, 37, 38, 40, 41, 43)
 dv$republican <- ifelse(is.element(dv$code,c), 1, 0)
 dv$republican <- as.factor(dv$republican)
